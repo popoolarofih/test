@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Cost Estimation Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Software Cost Estimation Tool</h1>
+        <form id="estimation-form">
+            <!-- Input Sliders -->
+            <div class="form-group">
+                <label for="project-size">Project Size (LOC): <span id="project-size-value">500</span></label>
+                <input type="range" id="project-size" min="500" max="5000" value="500">
+            </div>
+            <div class="form-group">
+                <label for="project-duration">Project Duration (Months): <span id="project-duration-value">3</span></label>
+                <input type="range" id="project-duration" min="3" max="24" value="3">
+            </div>
+            <div class="form-group">
+                <label for="team-size">Team Size (Members): <span id="team-size-value">3</span></label>
+                <input type="range" id="team-size" min="3" max="20" value="3">
+            </div>
+            <div class="form-group">
+                <label for="complexity">Complexity (1-10): <span id="complexity-value">1</span></label>
+                <input type="range" id="complexity" min="1" max="10" value="1">
+            </div>
+            <div class="form-group">
+                <label for="reliability">Reliability (1-5): <span id="reliability-value">1</span></label>
+                <input type="range" id="reliability" min="1" max="5" value="1">
+            </div>
+            <div class="form-group">
+                <label for="database-size">Database Size (MB): <span id="database-size-value">100</span></label>
+                <input type="range" id="database-size" min="100" max="1000" value="100">
+            </div>
+            <div class="form-group">
+                <label for="team-cohesion">Team Cohesion (1-5): <span id="team-cohesion-value">1</span></label>
+                <input type="range" id="team-cohesion" min="1" max="5" value="1">
+            </div>
+            <div class="form-group">
+                <label for="developer-experience">Developer Experience (1-5): <span id="developer-experience-value">1</span></label>
+                <input type="range" id="developer-experience" min="1" max="5" value="1">
+            </div>
+            <div class="form-group">
+                <label for="software-tools">Software Tools (1-5): <span id="software-tools-value">1</span></label>
+                <input type="range" id="software-tools" min="1" max="5" value="1">
+            </div>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        <!-- Results -->
+        <div id="result">
+            <h2>Estimation Results:</h2>
+            <p><strong>Effort:</strong> <span id="effort"></span> Person-months</p>
+            <p><strong>Time:</strong> <span id="time"></span> Months</p>
+            <p><strong>Cost:</strong> $<span id="cost"></span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
