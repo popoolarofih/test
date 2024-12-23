@@ -3,62 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Cost Estimation Tool</title>
+    <title>Software Cost Estimation</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Software Cost Estimation Tool</h1>
-        <form id="estimation-form">
-            <!-- Input Sliders -->
-            <div class="form-group">
-                <label for="project-size">Project Size (LOC): <span id="project-size-value">500</span></label>
-                <input type="range" id="project-size" min="500" max="5000" value="500">
-            </div>
-            <div class="form-group">
-                <label for="project-duration">Project Duration (Months): <span id="project-duration-value">3</span></label>
-                <input type="range" id="project-duration" min="3" max="24" value="3">
-            </div>
-            <div class="form-group">
-                <label for="team-size">Team Size (Members): <span id="team-size-value">3</span></label>
-                <input type="range" id="team-size" min="3" max="20" value="3">
-            </div>
-            <div class="form-group">
-                <label for="complexity">Complexity (1-10): <span id="complexity-value">1</span></label>
-                <input type="range" id="complexity" min="1" max="10" value="1">
-            </div>
-            <div class="form-group">
-                <label for="reliability">Reliability (1-5): <span id="reliability-value">1</span></label>
-                <input type="range" id="reliability" min="1" max="5" value="1">
-            </div>
-            <div class="form-group">
-                <label for="database-size">Database Size (MB): <span id="database-size-value">100</span></label>
-                <input type="range" id="database-size" min="100" max="1000" value="100">
-            </div>
-            <div class="form-group">
-                <label for="team-cohesion">Team Cohesion (1-5): <span id="team-cohesion-value">1</span></label>
-                <input type="range" id="team-cohesion" min="1" max="5" value="1">
-            </div>
-            <div class="form-group">
-                <label for="developer-experience">Developer Experience (1-5): <span id="developer-experience-value">1</span></label>
-                <input type="range" id="developer-experience" min="1" max="5" value="1">
-            </div>
-            <div class="form-group">
-                <label for="software-tools">Software Tools (1-5): <span id="software-tools-value">1</span></label>
-                <input type="range" id="software-tools" min="1" max="5" value="1">
-            </div>
+        <header>
+            <h1>Software Cost Estimation Tool</h1>
+        </header>
+        <main>
+            <form id="estimation-form">
+                <div class="slider-group">
+                    <label for="project-size">Project Size (Lines of Code)</label>
+                    <div class="slider-container">
+                        <input type="range" id="project-size" min="500" max="5000" step="100" value="500">
+                        <span id="project-size-value">500</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="project-duration">Project Duration (Months)</label>
+                    <div class="slider-container">
+                        <input type="range" id="project-duration" min="3" max="24" step="1" value="3">
+                        <span id="project-duration-value">3</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="team-size">Team Size</label>
+                    <div class="slider-container">
+                        <input type="range" id="team-size" min="3" max="20" step="1" value="3">
+                        <span id="team-size-value">3</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="complexity">Complexity</label>
+                    <div class="slider-container">
+                        <input type="range" id="complexity" min="1" max="10" step="1" value="1">
+                        <span id="complexity-value">1</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="reliability">Reliability</label>
+                    <div class="slider-container">
+                        <input type="range" id="reliability" min="1" max="5" step="1" value="1">
+                        <span id="reliability-value">1</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="database-size">Database Size (MB)</label>
+                    <div class="slider-container">
+                        <input type="range" id="database-size" min="100" max="1000" step="50" value="100">
+                        <span id="database-size-value">100</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="team-cohesion">Team Cohesion</label>
+                    <div class="slider-container">
+                        <input type="range" id="team-cohesion" min="1" max="5" step="1" value="1">
+                        <span id="team-cohesion-value">1</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="developer-experience">Developer Experience</label>
+                    <div class="slider-container">
+                        <input type="range" id="developer-experience" min="1" max="5" step="1" value="1">
+                        <span id="developer-experience-value">1</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="software-tools">Software Tools</label>
+                    <div class="slider-container">
+                        <input type="range" id="software-tools" min="1" max="5" step="1" value="1">
+                        <span id="software-tools-value">1</span>
+                    </div>
+                </div>
+                <button type="submit">Calculate</button>
+            </form>
 
-            <button type="submit">Calculate</button>
-        </form>
-
-        <!-- Results -->
-        <div id="result">
-            <h2>Estimation Results:</h2>
-            <p><strong>Effort:</strong> <span id="effort"></span> Person-months</p>
-            <p><strong>Time:</strong> <span id="time"></span> Months</p>
-            <p><strong>Cost:</strong> $<span id="cost"></span></p>
-        </div>
+            <div id="results">
+                <h2>Results</h2>
+                <div class="result-item">
+                    <span class="result-label">Effort:</span>
+                    <span id="effort" class="result-value">0</span>
+                    <span class="result-unit">Person-Months</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Time:</span>
+                    <span id="time" class="result-value">0</span>
+                    <span class="result-unit">Months</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Cost:</span>
+                    <span id="cost" class="result-value">0</span>
+                    <span class="result-unit">₦</span>
+                </div>
+            </div>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
+
