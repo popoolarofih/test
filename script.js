@@ -1,3 +1,5 @@
+// script.js
+
 // Update slider values dynamically
 const updateSliderValue = (id, displayId) => {
     const slider = document.getElementById(id);
@@ -8,16 +10,35 @@ const updateSliderValue = (id, displayId) => {
 };
 
 // Initialize sliders
-["project-size", "project-duration", "team-size", "complexity", "reliability", 
- "database-size", "team-cohesion", "developer-experience", "software-tools"]
-.forEach((id) => updateSliderValue(id, `${id}-value`));
+[
+    "project-size",
+    "project-duration",
+    "team-size",
+    "complexity",
+    "reliability",
+    "database-size",
+    "team-cohesion",
+    "developer-experience",
+    "software-tools",
+    "electricity-cost",
+].forEach((id) => updateSliderValue(id, `${id}-value`));
 
 // COCOMO Calculation Function
 function calculateCOCOMO(inputs) {
-    const { projectSize, projectDuration, teamSize, complexity, reliability, 
-            databaseSize, teamCohesion, developerExperience, softwareTools } = inputs;
+    const {
+        projectSize,
+        projectDuration,
+        teamSize,
+        complexity,
+        reliability,
+        databaseSize,
+        teamCohesion,
+        developerExperience,
+        softwareTools,
+        electricityCost,
+    } = inputs;
 
-    const effort = 
+    const effort =
         (projectSize / 1000) *
         (complexity * reliability) *
         (teamSize / teamCohesion) *
@@ -25,7 +46,11 @@ function calculateCOCOMO(inputs) {
         (1 + 0.05 * (5 - softwareTools));
 
     const time = projectDuration + effort / teamSize;
-    const cost = effort * 160 * 500; // Assuming ₦500/hour and 160 hours/month
+
+    // Calculate total cost (including electricity)
+    const developerCost = effort * 160 * 500; // ₦500/hour rate, 160 hours/month
+    const electricityTotal = electricityCost * time; // Electricity cost for project duration
+    const cost = developerCost + electricityTotal;
 
     return {
         effort: effort.toFixed(2),
@@ -48,6 +73,7 @@ document.getElementById("estimation-form").addEventListener("submit", function (
         teamCohesion: parseInt(document.getElementById("team-cohesion").value),
         developerExperience: parseInt(document.getElementById("developer-experience").value),
         softwareTools: parseInt(document.getElementById("software-tools").value),
+        electricityCost: parseInt(document.getElementById("electricity-cost").value),
     };
 
     const result = calculateCOCOMO(inputs);
